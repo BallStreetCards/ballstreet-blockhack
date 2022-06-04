@@ -18,7 +18,6 @@
           <div class="col">Seconds</div>
         </div>
       </div>
-
       <div class="row q-mt-md">
         <q-btn class="col" color="accent">View Details</q-btn>
       </div>
