@@ -34,16 +34,16 @@
       <router-view />
     </q-page-container>
     <!-- TODO - FOOTER BINVIS BACKGROUND COVERS BUTTONS TO RPESS -->
-    <q-footer class="bg-transparent row justify-end" sticky>
+    <q-page-sticky position="bottom-right" :offset="[18, 18]">
       <q-btn
         unelevated
         icon="message"
-        class="q-ma-lg dc"
+        class="q-ma-lg dc text-white"
         size="20px"
         round
         href="https://discord.gg/gks5AT5v"
       />
-    </q-footer>
+    </q-page-sticky>
   </q-layout>
 </template>
 

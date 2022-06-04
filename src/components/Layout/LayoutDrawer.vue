@@ -58,6 +58,7 @@ export default defineComponent({
       },
 
       { name: 'marketplace', icon: 'store', route: 'marketplace' },
+      { name: 'listing', icon: 'add', route: 'listing' },
     ];
     return { routes };
   },
