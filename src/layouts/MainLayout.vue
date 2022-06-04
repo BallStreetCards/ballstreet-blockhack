@@ -34,7 +34,7 @@
       <router-view />
     </q-page-container>
     <!-- TODO - FOOTER BINVIS BACKGROUND COVERS BUTTONS TO RPESS -->
-    <q-footer class="bg-transparent row justify-end">
+    <q-footer class="bg-transparent row justify-end" sticky>
       <q-btn
         unelevated
         icon="message"
