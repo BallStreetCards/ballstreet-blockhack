@@ -1,17 +1,21 @@
 <template>
   <div class="column fit">
     <div class="row">
+      <!-- MY CARDS -->
       <div class="col text-uppercase text-primary fn-lg fn-800 q-pt-lg q-pb-lg">
         my cards
       </div>
       <div class="col q-pt-lg q-pb-lg">
         <div class="row justify-end">
+          <!-- WALLPAPER BUTTON -->
           <div class="col-md-auto q-pr-sm">
             <q-btn flat dense color="brown" icon="wallpaper" />
           </div>
+          <!-- SIGNAL CELLULAR ALT BUTTON -->
           <div class="col-md-auto q-pr-sm">
             <q-btn flat dense color="light-brown" icon="signal_cellular_alt" />
           </div>
+          <!-- SORT BY -->
           <div class="col-6">
             <q-select
               rounded
@@ -25,6 +29,7 @@
         </div>
       </div>
     </div>
+    <!-- CARDS -->
     <div class="row fit q-pl-xl q-pb-lg q-pt-lg q-col-gutter-x-xl">
       <div class="col">
         <q-img

@@ -27,6 +27,7 @@ export default defineComponent({
     MyBinders,
     MyCardsBottom,
   },
+  name: 'PortfolioPage',
   setup() {
     return {};
   },
