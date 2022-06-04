@@ -5,11 +5,7 @@
       <q-skeleton size="40px" type="QAvatar" />
     </div>
     <q-separator class="q-mx-sm" horizontal />
-    <div class="row justify-center q-gutter-y-sm q-py-lg">
-      <q-btn color="primary" round flat icon="search" size="15px" />
-      <q-btn color="primary" round flat icon="notifications" size="15px" />
-    </div>
-    <q-separator class="q-mx-sm" horizontal />
+
     <div class="row justify-center q-gutter-y-sm q-py-lg">
       <q-btn
         v-for="route in routes"
@@ -60,8 +56,7 @@ export default defineComponent({
         icon: 'dashboard',
         route: 'dashboard',
       },
-      { name: 'portfolio', icon: 'work', route: 'portfolio' },
-      { name: 'watchlist', icon: 'bookmark', route: '' },
+
       { name: 'marketplace', icon: 'store', route: 'marketplace' },
     ];
     return { routes };
