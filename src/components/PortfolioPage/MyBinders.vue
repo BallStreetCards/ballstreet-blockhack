@@ -1,9 +1,11 @@
 <template>
   <div class="column fit">
+    <!-- BINDERS -->
     <div class="row text-uppercase text-primary fn-lg fn-800 q-pt-lg q-pb-lg">
       binders
     </div>
     <div class="row fit">
+      <!-- ASHLEY'S CARDS -->
       <div class="col">
         <q-img src="/assets/PortfolioPage/binders.png">
           <div class="column bg-transparent fit justify-between">
@@ -25,6 +27,7 @@
           </div>
         </q-img>
       </div>
+      <!-- CHILDHOOD FAVES -->
       <div class="col q-pl-md q-pr-md">
         <q-img src="/assets/PortfolioPage/binders.png">
           <div class="column bg-transparent fit justify-between">
@@ -46,6 +49,7 @@
           </div>
         </q-img>
       </div>
+      <!-- NEW -->
       <div bordered class="col border">
         <div
           class="column text-uppercase fit justify-center items-center text-brown fn-md fn-800"

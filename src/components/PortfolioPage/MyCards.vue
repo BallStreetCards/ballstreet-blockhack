@@ -3,10 +3,12 @@
     <div class="column bg-transparent fit">
       <div class="col q-pl-lg q-pr-lg">
         <div class="row q-pb-lg">
+          <!-- MY CARDS -->
           <div class="col text-info text-capitalize fn-lg-xl fn-800">
             my cards
           </div>
           <div class="row">
+            <!-- QR CODE BUTTON -->
             <div class="col q-pr-sm">
               <q-btn
                 flat
@@ -16,6 +18,7 @@
                 class="bg-grey-blue"
               />
             </div>
+            <!-- PLAY ARROW BUTTON -->
             <div class="col">
               <q-btn
                 flat
@@ -28,6 +31,7 @@
           </div>
         </div>
         <div class="row justify-center items-end q-gutter-x-xl">
+          <!-- LEFT CARD -->
           <div class="col-md-auto q-pr-xl q-pb-md">
             <div class="row">
               <div class="col">
@@ -47,6 +51,7 @@
               </div>
             </div>
           </div>
+          <!-- MIDDLE CARD -->
           <div class="col-md-auto q-pr-xl q-pl-xl">
             <div class="row">
               <div class="col">
@@ -66,6 +71,7 @@
               </div>
             </div>
           </div>
+          <!-- RIGHT CARD -->
           <div class="col-md-auto q-pl-xl q-pb-md">
             <div class="row">
               <div class="col">
