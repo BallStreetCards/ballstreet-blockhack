@@ -23,11 +23,24 @@
     <q-drawer
       v-model="leftDrawerOpen"
       class="bg-cream"
-      :width="80"
+      :width="user.data.value ? 80 : 200"
       show-if-above
       bordered
     >
-      <layout-drawer />
+      <layout-drawer v-if="user.data.value" />
+      <q-list class="column fit bg-cream">
+        <!-- AVATAR -->
+        <div
+          class="fn-md text-dark fn-jost fn-800 text-center text-uppercase q-my-md"
+        >
+          Get Started
+        </div>
+        <q-separator class="q-mx-sm" horizontal />
+        <q-btn outline class="q-mx-sm q-mt-sm fn-xs"> Connect with NEAR</q-btn>
+        <q-btn outline class="q-mx-sm q-mt-sm fn-xs" @click="signInGoogle">
+          Connect with GOOGLE</q-btn
+        >
+      </q-list>
     </q-drawer>
 
     <q-page-container>
@@ -62,6 +75,8 @@
 import { defineComponent, ref } from 'vue';
 import LayoutDrawer from '../components/Layout/LayoutDrawer.vue';
 import LayoutTimer from '../components/Layout/LayoutTimer.vue';
+import { useFirebaseUser } from '@gcto/firebase-hooks';
+import { GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
 
 export default defineComponent({
   components: { LayoutDrawer, LayoutTimer },
@@ -69,9 +84,15 @@ export default defineComponent({
 
   setup() {
     const leftDrawerOpen = ref(true);
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+    const signInGoogle = () => signInWithPopup(auth, provider);
+
+    const user = useFirebaseUser();
     return {
       leftDrawerOpen,
-
+      user,
+      signInGoogle,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },

@@ -6,7 +6,7 @@
         size="40px"
         class="q-mb-md"
       />
-      <q-item-label class="fn-lg fn-rc fn-600 text-primary q-mb-lg"
+      <q-item-label class="fn-lg fn-rc fn-600 text-primary q-mb-sm"
         >What type of card are you listing?</q-item-label
       >
     </div>
@@ -22,10 +22,7 @@
       class="bg-dark-cream q-mx-xl"
       height="500px"
     >
-      <q-carousel-slide
-        name="sports"
-        class="text-center q-gutter-md overflow-hidden"
-      >
+      <q-carousel-slide name="sports" class="text-center overflow-hidden">
         <div class="text-brown fn-lg fn-rc fn-600">SPORTS</div>
         <q-img
           src="/assets/ListCardPage/sport-card.png"
@@ -33,10 +30,7 @@
           fit="none"
         />
       </q-carousel-slide>
-      <q-carousel-slide
-        name="other"
-        class="text-center q-gutter-md overflow-hidden"
-      >
+      <q-carousel-slide name="other" class="text-center overflow-hidden">
         <div class="text-brown fn-lg fn-rc fn-600">OTHER</div>
         <q-img
           src="/assets/ListCardPage/other-card.png"

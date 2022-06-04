@@ -54,7 +54,7 @@ export default defineComponent({
       {
         name: 'dashboard',
         icon: 'dashboard',
-        route: 'dashboard',
+        route: '',
       },
 
       { name: 'marketplace', icon: 'store', route: 'marketplace' },

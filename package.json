@@ -11,6 +11,8 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
+    "@gcto/common-components": "^7.0.0",
+    "@gcto/firebase-hooks": "^4.0.0",
     "@gcto/swrv-hooks": "^0.0.4",
     "@quasar/extras": "^1.0.0",
     "@vue/composition-api": "^1.6.2",

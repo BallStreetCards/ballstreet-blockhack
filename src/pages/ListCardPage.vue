@@ -25,13 +25,13 @@
             <q-carousel-slide name="front"
               ><div class="full-height">
                 <q-img
-                  src="/assets/ListCardPage/frontCard.png"
+                  src="/assets/ListCardPage/front-card.png"
                   fit="none"
                   class="full-height"
                 /></div></q-carousel-slide
             ><q-carousel-slide name="back"
               ><q-img
-                src="/assets/ListCardPage/backCard.png"
+                src="/assets/ListCardPage/back-card.png"
                 fit="none"
                 class="full-height" /></q-carousel-slide
           ></q-carousel>
@@ -121,7 +121,7 @@
         </q-carousel>
       </div>
 
-      <div class="col-1 row justify-around q-px-xl" v-if="carousel != null">
+      <div class="col-1 row justify-between q-px-xl" v-if="carousel != null">
         <q-btn
           outline
           color="accent"
