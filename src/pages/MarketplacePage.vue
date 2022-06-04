@@ -7,7 +7,7 @@
     <div class="container-lg q-mx-auto q-mt-xl gutter-cards q-mb-xl">
       <template v-if="cards.data">
         <template v-for="card in cards.data.value" :key="card[0]">
-          <marketplace-card :card="card[1]"></marketplace-card>
+          <marketplace-card :card="card" :soon="true"></marketplace-card>
         </template>
       </template>
     </div>
@@ -19,7 +19,15 @@ import MarketplaceBanner from 'src/components/MarketplacePage/MarketplaceBanner.
 import MarketplaceCard from 'src/components/MarketplacePage/MarketplaceCard/MarketplaceCard.vue';
 import MarketplaceSearch from 'src/components/MarketplacePage/MarketplaceSearch.vue';
 
-const cards = {data: {value: [{name: 'hello', imageUrl: ""}]}} //('marketplace-cards');
+const cards = {
+  data: {
+    value: [
+      { name: 'hello', imageUrl: 'HELLO' },
+      { name: 'hello', imageUrl: 'HELLO' },
+      { name: 'hello', imageUrl: 'HELLO' },
+    ],
+  },
+};
 console.log(cards.data.value);
 </script>
 
