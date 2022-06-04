@@ -28,7 +28,6 @@ const cards = {
     ],
   },
 };
-console.log(cards.data.value);
 </script>
 
 <style scoped lang="scss">
