@@ -12,6 +12,7 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/MarketplacePage.vue'),
       },
       { path: 'listing', component: () => import('pages/ListCardPage.vue') },
+      { path: 'portfolio', component: () => import('pages/PortfolioPage.vue') },
     ],
   },
 
