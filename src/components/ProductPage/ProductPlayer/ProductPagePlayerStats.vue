@@ -56,10 +56,10 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
 import { useSWRV } from '@gcto/swrv-hooks';
-import { axios } from 'src/boot/axios';
+
 import { API_PLAYER_STATS } from 'src/lib/sportsdata';
 import PlayerStats from 'src/models/PlayerStats';
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 type Year = '2020' | '2021' | '2022';
 export default defineComponent({

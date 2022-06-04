@@ -29,13 +29,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useFirestoreCollection } from '@gcto/firebase-hooks';
 import ProductMain from 'src/components/ProductPage/ProductMain.vue';
 import ProductAssetSummary from 'src/components/ProductPage/ProductAssetSummary.vue';
 import ProductPriceHistory from 'src/components/ProductPage/ProductPriceHistory.vue';
 import ProductCardholderInfo from 'src/components/ProductPage/ProductCardholderInfo.vue';
 import ProductPlayer from 'src/components/ProductPage/ProductPlayer.vue';
-import ProductVideo from 'src/components/ProductVideo.vue';
+import ProductVideo from 'src/components/ProductPage/ProductVideo.vue';
 import ProductPageFooter from '../components/ProductPage/ProductPageFooter.vue';
 
 export default defineComponent({
@@ -50,8 +49,7 @@ export default defineComponent({
   },
   name: 'EssentialLink',
   setup() {
-    const { data } = useFirestoreCollection('card-instance', () => ({}));
-    return { data };
+    return {};
   },
 });
 </script>

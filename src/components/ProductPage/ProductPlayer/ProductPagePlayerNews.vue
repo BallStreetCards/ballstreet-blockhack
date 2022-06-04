@@ -43,10 +43,10 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
 import { useSWRV } from '@gcto/swrv-hooks';
-import { axios } from 'src/boot/axios';
+
 import { API_PLAYER_NEWS } from 'src/lib/sportsdata';
 import PlayerNews from 'src/models/PlayerNews';
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 export default defineComponent({
   setup() {

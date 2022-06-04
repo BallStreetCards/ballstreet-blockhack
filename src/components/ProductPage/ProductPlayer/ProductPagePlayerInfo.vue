@@ -61,7 +61,7 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
 import { useSWRV } from '@gcto/swrv-hooks';
-import { axios } from 'src/boot/axios';
+import axios from 'axios';
 import { API_PLAYER_DETAILS } from 'src/lib/sportsdata';
 import PlayerDetails from 'src/models/PlayerDetails';
 import { AxiosResponse } from 'axios';
@@ -72,7 +72,7 @@ export default defineComponent({
   setup() {
     const tab = ref('player');
     const _playerData = useSWRV<AxiosResponse<PlayerDetails>, string>(
-      '/api/playerStadts',
+      '/api/playerStats',
       () => axios.get(API_PLAYER_DETAILS)
     );
 

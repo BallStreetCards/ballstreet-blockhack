@@ -140,7 +140,7 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
 import { useSWRV } from '@gcto/swrv-hooks';
-import { axios } from 'src/boot/axios';
+import axios from 'axios';
 import { API_PLAYER_GAME_STATS } from 'src/lib/sportsdata';
 import PlayerGameStats from 'src/models/PlayerGameStats';
 import { AxiosResponse } from 'axios';
