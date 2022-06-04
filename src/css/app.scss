@@ -1,1 +1,176 @@
 // app global css in SCSS form
+// app global css in SCSS form
+
+body {
+  @extend .fn-sm;
+  @extend .fn-rc;
+}
+
+@font-face {
+  font-family: 'Sportsball';
+  src: URL('fonts/Sportsball_normal.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'SportsballOutlined';
+  src: URL('fonts/Sportsball_outline.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'JostOutlined';
+  src: URL('fonts/jostblack.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Orbitron';
+  src: URL('fonts/Orbitron-VariableFont_wght.ttf') format('truetype');
+}
+
+.box-shadow {
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.05) !important;
+}
+.fn-rc {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.fn-orbitron {
+  font-family: 'Orbitron', monospace;
+}
+
+.q-px-xxl {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.fn-jost {
+  font-family: 'Jost', sans-serif;
+}
+.bg-cream {
+  background-color: $cream;
+}
+.bg-dark-cream {
+  background-color: $cream-dark;
+}
+.border-round {
+  border-radius: 8px;
+}
+.op-80 {
+  opacity: 0.8;
+}
+.op-60 {
+  opacity: 0.6;
+}
+.op-40 {
+  opacity: 0.4;
+}
+
+.op-10 {
+  opacity: 0.1;
+}
+
+.container-lg {
+  max-width: 1800px;
+  padding: 0px 20px;
+}
+.container {
+  max-width: 1200px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.fn-xxl {
+  font-size: 60pt;
+  line-height: 60pt;
+}
+.fn-xl {
+  font-size: 34pt;
+  line-height: 34pt;
+}
+.fn-lg-xl {
+  font-size: 25pt;
+  line-height: 24pt;
+}
+.fn-lg {
+  font-size: 18pt;
+  line-height: 22pt;
+}
+.fn-md {
+  font-size: 14pt;
+  line-height: 20pt;
+}
+.fn-md-p {
+  font-size: 14pt;
+  line-height: 25pt;
+}
+.fn-sm {
+  font-size: 12pt;
+  line-height: 24pt;
+}
+.fn-sm {
+  font-size: 12pt;
+  line-height: 24pt;
+}
+.fn-xs-p {
+  font-size: 10pt;
+  line-height: 18pt;
+}
+.fn-xs {
+  font-size: 10pt;
+  line-height: 14pt;
+}
+.fn-200 {
+  font-weight: 200;
+}
+.fn-300 {
+  font-weight: 300;
+}
+.fn-400 {
+  font-weight: 400;
+}
+.fn-500 {
+  font-weight: 500;
+}
+.fn-600 {
+  font-weight: 600;
+}
+.fn-700 {
+  font-weight: 700;
+}
+
+.fn-800 {
+  font-weight: 800;
+}
+
+.fn-link {
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.bg-grey-blue {
+  background: $grey-blue;
+}
+
+.text-light-grey {
+  color: $light-grey;
+}
+
+.img-size {
+  height: 220px;
+  width: 150px;
+}
+
+.text-light-brown {
+  color: $light-brown;
+}
+
+.grayscale {
+  filter: grayscale(1);
+}
+
+.marketplace-search-select-popup {
+  color: $brown;
+  background-color: $cream;
+  border-radius: 25px;
+}
