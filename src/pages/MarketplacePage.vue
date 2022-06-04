@@ -1,15 +1,17 @@
 <template>
-  <q-page class="bg-dark-cream">
-    <marketplace-banner />
-    <div class="container-lg q-mx-auto q-mt-lg">
-      <marketplace-search />
-    </div>
-    <div class="container-lg q-mx-auto q-mt-xl gutter-cards q-mb-xl">
-      <template v-if="cards">
-        <template v-for="card in cards" :key="card[0]">
-          <marketplace-card :card="card"></marketplace-card>
+  <q-page class="bg-dark-cream row">
+    <div class="col">
+      <marketplace-banner />
+      <div class="container-lg q-mx-auto q-mt-lg">
+        <marketplace-search />
+      </div>
+      <div class="container-lg q-mx-auto q-mt-xl gutter-cards q-mb-xl">
+        <template v-if="cards">
+          <template v-for="card in cards" :key="card[0]">
+            <marketplace-card :card="card"></marketplace-card>
+          </template>
         </template>
-      </template>
+      </div>
     </div>
   </q-page>
 </template>
