@@ -1,5 +1,5 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { firebaseInit } from '@gcto/firebase-hooks/lib';
+import { boot } from 'quasar/wrappers';
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -12,6 +12,6 @@ const firebaseConfig = {
   appId: '1:231466489097:web:dabbf0d4ad898ef63f2fd8',
 };
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-// Initialize Cloud Firestore and get a reference to the service
-export const db = getFirestore(app);
+export default boot(() => {
+  firebaseInit(firebaseConfig);
+});

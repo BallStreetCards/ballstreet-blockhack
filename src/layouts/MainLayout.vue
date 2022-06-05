@@ -28,7 +28,7 @@
       bordered
     >
       <layout-drawer v-if="user.data.value" />
-      <q-list class="column fit bg-cream">
+      <q-list class="column fit bg-cream" v-else>
         <!-- AVATAR -->
         <div
           class="fn-md text-dark fn-jost fn-800 text-center text-uppercase q-my-md"

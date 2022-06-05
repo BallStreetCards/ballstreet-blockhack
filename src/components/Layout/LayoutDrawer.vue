@@ -2,7 +2,10 @@
   <q-list class="column fit bg-cream">
     <!-- AVATAR -->
     <div class="row justify-center q-py-lg">
-      <q-skeleton size="40px" type="QAvatar" />
+      <q-avatar size="40px" v-if="user.data.value?.photoURL"
+        ><q-img :src="user.data.value?.photoURL || ''"
+      /></q-avatar>
+      <q-skeleton size="40px" type="QAvatar" v-else />
     </div>
     <q-separator class="q-mx-sm" horizontal />
 
@@ -41,15 +44,21 @@
         flat
         icon="meeting_room"
         size="15px"
+        @click="logout"
       />
     </div>
   </q-list>
 </template>
 
 <script lang="ts">
+import { useFirebaseUser } from '@gcto/firebase-hooks/lib';
 import { defineComponent } from 'vue';
+import { signOut, getAuth } from 'firebase/auth';
 export default defineComponent({
   setup() {
+    const user = useFirebaseUser();
+    const auth = getAuth();
+    const logout = () => signOut(auth);
     const routes = [
       {
         name: 'dashboard',
@@ -60,7 +69,7 @@ export default defineComponent({
       { name: 'marketplace', icon: 'store', route: 'marketplace' },
       { name: 'listing', icon: 'add', route: 'listing' },
     ];
-    return { routes };
+    return { routes, user, logout };
   },
 });
 </script>

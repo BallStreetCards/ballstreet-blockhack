@@ -17,16 +17,17 @@
 </template>
 
 <script lang="ts" setup>
-import MarketplaceBanner from 'src/components/MarketplacePage/MarketplaceBanner.vue';
-import MarketplaceCard from 'src/components/MarketplacePage/MarketplaceCard/MarketplaceCard.vue';
-import MarketplaceSearch from 'src/components/MarketplacePage/MarketplaceSearch.vue';
-import { db } from 'boot/firebase';
-import { collection, query, onSnapshot } from 'firebase/firestore';
+import {
+  collection,
+  query,
+  onSnapshot,
+  getFirestore,
+} from 'firebase/firestore';
 import Card from 'src/models/Card';
 import { ref } from 'vue';
 
 const cards = ref<Card[]>([]);
-
+const db = getFirestore();
 const q = query(collection(db, 'marketplace-cards'));
 onSnapshot(q, (querySnapshot) => {
   const nCards: Card[] = [];
