@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@gcto/firebase-hooks": "^4.0.0"
+  }
+}
