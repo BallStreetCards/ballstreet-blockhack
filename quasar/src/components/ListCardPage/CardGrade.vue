@@ -78,14 +78,25 @@
 </style>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, watchEffect } from 'vue';
 
 export default defineComponent({
-  setup() {
+  props: {
+    modelValue: String,
+  },
+  emits: ['update:modelValue'],
+  setup(_, { emit }) {
     const slider = ref(0);
 
     const option = ref('');
     const name = ref('');
+
+    watchEffect(() => {
+      emit(
+        'update:modelValue',
+        `${option.value.toUpperCase()} ${slider.value > 0 ? slider.value : ''}`
+      );
+    });
 
     const sliderMarkerLabel = (val: number) => (val === 0 ? 'N/A' : `${val}`);
 

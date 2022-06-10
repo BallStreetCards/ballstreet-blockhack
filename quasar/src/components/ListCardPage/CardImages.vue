@@ -10,53 +10,29 @@
         <q-item-label class="fn-lg fn-rc fn-600 text-primary q-mb-lg"
           >Add Images</q-item-label
         >
-        <div class="row q-gutter-x-md">
-          <div class="column items-center">
-            <div
-              class="upload-img upload-block justify-center items-center row"
-              v-if="!frontImage"
-            >
-              <q-btn
-                round
-                unelevated
-                color="dark-cream"
-                size="33px"
-                class="bg-cream"
-                @click="changeFrontImage"
-              >
-                <q-icon name="photo_camera" color="primary" size="50px"
-              /></q-btn>
-            </div>
-            <q-img
-              src="/assets/ListCardPage/front-card.png"
-              class="upload-img"
-              v-else
-            ></q-img>
-            <div class="text-brown fn-lg q-ma-md">Front</div>
-          </div>
 
-          <div class="column items-center">
-            <div
-              class="upload-img upload-block justify-center items-center row"
-              v-if="!backImage"
-            >
-              <q-btn
-                round
-                unelevated
-                color="dark-cream"
-                size="33px"
-                class="bg-cream"
-                @click="changeBackImage"
-              >
-                <q-icon name="photo_camera" color="primary" size="50px"
-              /></q-btn>
+        <div class="row q-col-gutter-x-md">
+          <div class="upload-img" v-for="side in sides" :key="side.name">
+            <div class="text-brown fn-lg q-ma-md text-center text-uppercase">
+              {{ side.name }}
             </div>
             <q-img
-              src="/assets/ListCardPage/back-card.png"
-              class="upload-img"
-              v-else
+              v-if="side.image"
+              :src="side.image"
+              class="upload-img upload-block"
+            >
+              <div class="bg-transparent q-pa-none">
+                <q-btn
+                  icon="close"
+                  dense
+                  round
+                  flat
+                  color="red"
+                  class="q-ma-none"
+                  @click="side.image = ''"
+                /></div
             ></q-img>
-            <div class="text-brown fn-lg q-ma-md">Back</div>
+            <media-input v-else v-model="side.image" />
           </div>
         </div>
       </div>
@@ -76,23 +52,36 @@
 </style>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { computed, defineComponent, reactive, ref, watchEffect } from 'vue';
+import MediaInput from '../forms/MediaInput.vue';
 
 export default defineComponent({
-  // components:{ CC.MediaC},
-  setup() {
-    const frontImage = ref(false);
-    const backImage = ref(false);
+  components: { MediaInput },
 
-    const changeFrontImage = () => {
-      frontImage.value = true;
+  props: {
+    modelValue: String,
+  },
+  emits: ['update:modelValue'],
+  setup(props, { emit }) {
+    const sides = reactive([
+      {
+        name: 'front',
+        image: '',
+      },
+
+      {
+        name: 'back',
+        image: '',
+      },
+    ]);
+
+    watchEffect(() => {
+      emit('update:modelValue', [sides[0].image, sides[1].image]);
+    });
+
+    return {
+      sides,
     };
-
-    const changeBackImage = () => {
-      backImage.value = true;
-    };
-
-    return { frontImage, backImage, changeFrontImage, changeBackImage };
   },
 });
 </script>

@@ -1,5 +1,21 @@
 <template>
-  <q-page class="row">
+  <q-page class="row bg-dark-cream" v-if="done">
+    <div class="column fit bg-dark-cream">
+      <div class="column q-pa-xl">
+        <div class="fn-jost fn-600 text-brown fn-xl">Success!</div>
+        <div class="fn-jost text-brown fn-md">
+          Your card listing application has been submitted, please wait 3-4
+          business days
+        </div>
+        <div class="q-mt-lg">
+          <q-btn class="fn-sm fn-jost bg-accent text-white" outline to="/">
+            Go back home
+          </q-btn>
+        </div>
+      </div>
+    </div>
+  </q-page>
+  <q-page class="row bg-dark-cream" v-else>
     <div class="row col-5 col-grow bg-primary">
       <div class="column col-11 col-grow">
         <div class="column full-height" v-if="slide < '3'">
@@ -25,56 +41,53 @@
             <q-carousel-slide name="front"
               ><div class="full-height">
                 <q-img
-                  src="/assets/ListCardPage/front-card.png"
+                  :src="cardImages[0]"
                   fit="none"
                   class="full-height"
                 /></div></q-carousel-slide
             ><q-carousel-slide name="back"
               ><q-img
-                src="/assets/ListCardPage/back-card.png"
+                :src="cardImages[1]"
                 fit="none"
                 class="full-height" /></q-carousel-slide
           ></q-carousel>
         </div>
-        <div class="col-3 column items-center" v-if="slide > '3'">
+        <div class="col-3 column items-center" v-if="slide > '2'">
           <div class="row q-gutter-sm text-dark-cream q-mb-sm">
-            <div class="fn-xl fn-600">Michael Jordan</div>
-            <div class="fn-xl">#8</div>
+            <div class="fn-xl fn-600">{{ cardApplication.details?.name }}</div>
+            <div class="fn-xl">
+              {{ cardApplication.details?.cardNumber ? '#' : ''
+              }}{{ cardApplication.details?.cardNumber }}
+            </div>
           </div>
-          <div class="row q-gutter-sm text-grey q-mb-lg" v-if="slide > '3'">
-            <div class="fn-md fn-600">Fleer</div>
-            <div class="fn-md">|</div>
-            <div class="fn-md">Immaculate Collection 1986</div>
+          <div class="row q-gutter-sm text-grey q-mb-lg" v-if="slide > '2'">
+            <div class="fn-md fn-600">
+              {{ cardApplication.details?.manufacterer }}
+            </div>
+            <div class="fn-md" v-if="cardApplication.details?.manufacterer">
+              |
+            </div>
+            <div class="fn-md">
+              {{ cardApplication.details?.collection }}
+              {{ cardApplication.details?.year }}
+            </div>
           </div>
-          <div class="row q-gutter-sm" v-if="slide > '4'">
-            <q-chip label="#72/99" rounded unelevated outline color="grey" />
+          <div class="row q-gutter-sm" v-if="slide > '3'">
             <q-chip
-              label="ON-CARD AUTOGRAPHED"
+              v-for="tag in cardApplication.tags"
+              :key="tag"
+              :label="tag"
               rounded
               unelevated
               outline
               color="grey"
             />
             <q-chip
-              label="JERSEY PATCH"
-              rounded
-              unelevated
-              outline
-              color="grey"
-            />
-            <q-chip
-              label="ROOKIE CARD"
-              rounded
-              unelevated
-              outline
-              color="grey"
-            />
-            <q-chip
-              label="BGS 9"
+              v-if="cardApplication.grade"
+              :label="cardApplication.grade"
               rounded
               unelevated
               color="cream"
-              v-if="finalize"
             />
           </div>
         </div>
@@ -93,6 +106,7 @@
               class="carousel-btn q-ml-lg"
               unelevated
               name="Button4"
+              @click="submit"
               >Validate Card</q-btn
             >
           </div>
@@ -113,11 +127,17 @@
             <card-type />
           </q-carousel-slide>
           <q-carousel-slide name="2">
-            <card-images />
+            <card-images v-model="cardImages" />
           </q-carousel-slide>
-          <q-carousel-slide name="3"><card-info /></q-carousel-slide>
-          <q-carousel-slide name="4"><card-tags /></q-carousel-slide>
-          <q-carousel-slide name="5"><card-grade /></q-carousel-slide>
+          <q-carousel-slide name="3"
+            ><card-info v-model="cardDetails"
+          /></q-carousel-slide>
+          <q-carousel-slide name="4"
+            ><card-tags v-model="cardTags"
+          /></q-carousel-slide>
+          <q-carousel-slide name="5"
+            ><card-grade v-model="cardGrade"
+          /></q-carousel-slide>
         </q-carousel>
       </div>
 
@@ -187,21 +207,55 @@ $preview-text: #fbf7ea;
 </style>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, computed } from 'vue';
 import CardType from 'src/components/ListCardPage/CardType.vue';
 import CardImages from 'src/components/ListCardPage/CardImages.vue';
 import CardInfo from 'src/components/ListCardPage/CardInfo.vue';
 import CardTags from 'src/components/ListCardPage/CardTags.vue';
 import CardGrade from '../components/ListCardPage/CardGrade.vue';
 import ProgressBar from 'src/components/ListCardPage/ProgressBar.vue';
+import { doc, setDoc, getFirestore } from 'firebase/firestore';
 
 export default defineComponent({
   setup() {
+    const cardImages = ref([]);
+    const cardDetails = ref<{
+      name: string;
+    }>({ name: '' });
+    const cardTags = ref([]);
+    const cardGrade = ref('');
+    const cardApplication = computed(() => ({
+      details: cardDetails.value,
+      images: cardImages.value,
+      tags: cardTags.value,
+      grade: cardGrade.value,
+    }));
     const finalize = ref(false);
     const imagePreview = ref('front');
     const carousel = ref(null);
     const slide = ref('1');
-    return { imagePreview, slide, carousel, finalize };
+    const done = ref(false);
+    const db = getFirestore();
+    const submit = async () => {
+      await setDoc(
+        doc(db, 'card-applications', `${cardApplication?.value.details?.name}`),
+        cardApplication.value
+      );
+      done.value = true;
+    };
+    return {
+      imagePreview,
+      slide,
+      carousel,
+      finalize,
+      cardImages,
+      cardApplication,
+      cardGrade,
+      cardDetails,
+      cardTags,
+      submit,
+      done,
+    };
   },
   components: {
     CardType,
