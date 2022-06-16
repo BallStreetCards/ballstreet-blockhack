@@ -93,6 +93,7 @@
               class="carousel-btn q-ml-lg"
               unelevated
               name="Button4"
+              @click="mint"
               >Validate Card</q-btn
             >
           </div>
@@ -194,6 +195,8 @@ import CardInfo from 'src/components/ListCardPage/CardInfo.vue';
 import CardTags from 'src/components/ListCardPage/CardTags.vue';
 import CardGrade from '../components/ListCardPage/CardGrade.vue';
 import ProgressBar from 'src/components/ListCardPage/ProgressBar.vue';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import 'firebase/firestore';
 
 export default defineComponent({
   setup() {
@@ -201,7 +204,16 @@ export default defineComponent({
     const imagePreview = ref('front');
     const carousel = ref(null);
     const slide = ref('1');
-    return { imagePreview, slide, carousel, finalize };
+
+    function mint() {
+      addDoc(collection(getFirestore(), 'proposals'), {
+        name: 'BSC-' + Date.now(),
+        description: 'Michael Jordan #8',
+        amount: '100000000',
+      });
+    }
+
+    return { imagePreview, slide, carousel, finalize, mint };
   },
   components: {
     CardType,

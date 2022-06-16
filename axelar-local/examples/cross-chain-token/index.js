@@ -23,7 +23,7 @@ async function deploy(chain, wallet) {
     console.log(`Deployed ERC20CrossChain for ${chain.name} at ${chain.crossChainToken}.`);
 }
 
-async function deploy2(chain, wallet, { name, symbol }) {
+async function deploy2(chain, wallet, { name, symbol, amount } = { symbol: 'BSC3', name: 'Ball Street Card #1', amount: '0' }) {
     console.log(`Deploying ERC20CrossChain for ${chain.name}.`);
     const contract = await deployContractConstant(
         chain.constAddressDeployer,
@@ -32,7 +32,7 @@ async function deploy2(chain, wallet, { name, symbol }) {
         'cross-chain-token',
         [name, symbol, decimals],
     );
-    await (await contract.init(chain.gateway, chain.gasReceiver)).wait();
+    await (await contract.init(chain.gateway, chain.gasReceiver, amount)).wait();
     chain.crossChainToken = contract.address;
     console.log(`Deployed ERC20CrossChain for ${chain.name} at ${chain.crossChainToken}.`);
 }
@@ -86,4 +86,5 @@ async function test(chains, wallet, options) {
 module.exports = {
     deploy,
     test,
+    deploy2
 }
