@@ -52,15 +52,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, watchEffect, PropType } from 'vue';
 
 export default defineComponent({
-  setup() {
+  props: {
+    modelValue: Object as PropType<Record<string, string>>,
+  },
+  emits: ['update:modelValue'],
+  setup(_, { emit }) {
     const name = ref(null);
     const manufacterer = ref(null);
     const collection = ref(null);
     const year = ref(null);
     const cardNumber = ref(null);
+    watchEffect(() => {
+      emit('update:modelValue', {
+        manufacterer: manufacterer.value,
+        collection: collection.value,
+        year: year.value,
+        cardNumber: cardNumber.value,
+        name: name.value,
+      });
+    });
     return { name, manufacterer, collection, year, cardNumber };
   },
 });

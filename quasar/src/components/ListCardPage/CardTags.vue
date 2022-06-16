@@ -31,10 +31,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, PropType, watchEffect } from 'vue';
 
 export default defineComponent({
-  setup() {
+  props: {
+    modelValue: Object as PropType<string[]>,
+  },
+  emits: ['update:modelValue'],
+  setup(_, { emit }) {
     const options = [
       'Rare',
       'Common',
@@ -58,8 +62,10 @@ export default defineComponent({
       return selected.value.length > 4;
     };
 
-    const selected = ref(new Array(0));
-
+    const selected = ref<string[]>([]);
+    watchEffect(() => {
+      emit('update:modelValue', selected.value);
+    });
     const clickOption = (option: string) => {
       if (!maxSelected() && !selected.value.includes(option))
         selected.value.push(option);
